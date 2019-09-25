@@ -3,7 +3,7 @@ import './demo.css'
 import ListItem from './ListItem'
 import ListHeader from './ListHeader'
 
-class Demo extends Component {
+class List extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -15,7 +15,13 @@ class Demo extends Component {
   render () {
     return (
       <Fragment>
-        {/* jsx文件内部的注释 */}
+        {/* jsx文件内部的注释 大括号包裹
+            组件化的搭建思想
+            子组件中的方法和属性通过props来获取
+            注意传递方法中this指向的问题
+            state类似Vue中的data来保存数据
+            jsx的格式问题！！！
+        */}
         <ListHeader
           inputChange={this.inputChange.bind(this)}
           addList={this.addList.bind(this)}
@@ -65,4 +71,4 @@ class Demo extends Component {
   }
 }
 
-export default Demo
+export default List

@@ -1,5 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Demo from './Demo'
+import List from './List'
 
-ReactDOM.render(< Demo / >, document.getElementById('root'))
+ReactDOM.render(< List / >, document.getElementById('root'))
