@@ -8,7 +8,8 @@ class List extends Component {
     super(props)
     this.state = {
       inputValue: '',
-      list: []
+      list: [],
+      length: 0
     }
   }
 
@@ -27,13 +28,14 @@ class List extends Component {
           addList={this.addList.bind(this)}
           value={this.state.inputValue}
         />
-        <ul>
+        <ul ref={(ul) => { this.ul = ul }}>
+          <span>已设置的todo事件数量:{this.state.length}</span>
           {
             this.state.list.map((item, index) => {
               return (
                 <ListItem
                   content={item}
-                  key={index + item}
+                  key={`${index} ${item}`}
                   index={index}
                   deleteItem={this.deleteItem.bind(this)}
                 />
@@ -45,6 +47,7 @@ class List extends Component {
     )
   }
 
+  // 尚未使用ref绑定前的写法
   inputChange (e) {
     // console.log(e.target.value)
     // 注意this指向 需要在事件绑定当中 用bind方法确定this
@@ -55,9 +58,14 @@ class List extends Component {
 
   addList () {
     if (!this.state.inputValue) return
+    // setState是异步方法 第二参数是回调函数
     this.setState({
       list: [...this.state.list, this.state.inputValue],
       inputValue: ''
+    }, () => {
+      this.setState({
+        length: this.ul.querySelectorAll('li').length
+      })
     })
   }
 
