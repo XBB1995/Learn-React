@@ -19,6 +19,25 @@ class ListItem extends Component {
     // 注意在接受函数时的this指向问题
     this.props.deleteItem(this.props.index)
   }
+
+  componentWillReceiveProps () {
+    // 只有在非顶层 即接收到props数据的组件中才能触发
+    // 组件第一次存在于虚拟dom中，函数时不会被执行
+    // 如果已经存在于dom中，函数才会被执行
+    console.log('child-componentWillReceiveProps')
+  }
+
+  shouldComponentUpdate (nextProps, nextState) {
+    // content值不同时才返回true
+    if (nextProps.content !== this.props.content) {
+      return true
+    } else return false
+  }
+
+  componentWillUnmount () {
+    // 删除组件时触发的生命周期钩子
+    console.log('child componentWillUnMount')
+  }
 }
 
 // 参数校验

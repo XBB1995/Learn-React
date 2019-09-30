@@ -4,13 +4,22 @@ import ListItem from './ListItem'
 import ListHeader from './ListHeader'
 
 class List extends Component {
+  // 在某一时刻自动执行的函数
   constructor (props) {
     super(props)
     this.state = {
       inputValue: '',
-      list: [],
+      list: ['a', 'b'],
       length: 0
     }
+  }
+
+  componentWillMount () {
+    console.log('组件将要挂载到页面的时刻')
+  }
+
+  componentDidMount () {
+    console.log('组件挂载完成的时刻')
   }
 
   render () {
@@ -45,6 +54,20 @@ class List extends Component {
         </ul>
       </Fragment>
     )
+  }
+
+  shouldComponentUpdate () {
+    // 必须返回一个boolean值
+    console.log('shouldComponentUpdate')
+    return true
+  }
+
+  componentWillUpdate () {
+
+  }
+
+  componentDidUpdate () {
+
   }
 
   // 尚未使用ref绑定前的写法
