@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 class ListItem extends Component {
   constructor (props) {
     super(props)
+    // 强制绑定this的指向子组件
     this.handleClick = this.handleClick.bind(this)
   }
 
@@ -17,6 +18,7 @@ class ListItem extends Component {
 
   handleClick () {
     // 注意在接受函数时的this指向问题
+    // console.log(this)
     this.props.deleteItem(this.props.index)
   }
 
